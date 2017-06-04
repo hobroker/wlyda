@@ -1,6 +1,16 @@
-body {
-	background-color red
+@import "_mixins.styl"
+
+.d-center {
 	text-align center
-	//color blue
+}
+.btn-fb {
+	color #fff
+	background-color $fb-btn-color
+	border-color $fb-btn-color
+	cursor: pointer
+	&:hover {
+		background-color darken($fb-btn-color, 10%)
+		border-color darken($fb-btn-color, 10%)
+	}
 }
 

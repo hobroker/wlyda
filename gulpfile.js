@@ -1,36 +1,37 @@
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
-const jshint = require('gulp-jshint');
 const runSequence = require('run-sequence');
 
 require('./app/env');
 
 require("./app/assets/bundle.config");
 
-gulp.task('lint', function () {
-	gulp.src('./**/*.scripts')
-		.pipe(jshint())
-});
-
-gulp.task('nodemon', function () {
+function nodemonTask() {
 	const daemon = nodemon({
-		script: 'app/index.scripts',
-		watch: ['app/**/*', 'gulpfile.scripts'],
-		ext: 'scripts'
+		script: './app/index.js',
+		watch: [
+			'app/**/*',
+			'gulpfile.js'
+		],
+		ignore: [
+			'app/assets/**/*'
+		],
+		ext: 'js hbs'
+		// tasks: ['bundle-assets']
 	});
 
 	daemon
 		.on('restart', function () {
-			runSequence('lint', function () {
-				console.log('Restarted!');
-			});
+			console.log('Application has restarted!');
 		})
 		.on('crash', function () {
 			console.error('Application has crashed!\n');
 			daemon.emit('restart', 10)
 		});
-});
+}
+
+gulp.task('nodemon', nodemonTask);
 
 gulp.task('default', function (callback) {
-	runSequence('lint', 'bundle-assets', 'nodemon', callback);
+	runSequence('bundle-assets', 'nodemon', callback);
 });

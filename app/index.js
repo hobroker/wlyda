@@ -4,6 +4,7 @@ const serve = require('koa-static');
 
 const router = require('./router');
 require('./views/handlebars');
+require('./db');
 
 koaApp
 	.use(koaViews(__dirname + '/views', {
