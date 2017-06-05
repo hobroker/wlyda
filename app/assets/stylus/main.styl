@@ -1,16 +1,18 @@
 @import "_mixins.styl"
 
 .d-center {
-	text-align center
+  text-align center
 }
+
 .btn-fb {
-	color #fff
-	background-color $fb-btn-color
-	border-color $fb-btn-color
-	cursor: pointer
-	&:hover {
-		background-color darken($fb-btn-color, 10%)
-		border-color darken($fb-btn-color, 10%)
-	}
+  color #fff
+  background-color $fb-btn-color
+  border-color $fb-btn-color
+  cursor: pointer
+  &:hover, &:focus {
+    background-color darken($fb-btn-color, 15%)
+    border-color darken($fb-btn-color, 15%)
+    color #fff
+  }
 }
 

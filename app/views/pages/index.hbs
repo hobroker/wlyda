@@ -1,7 +1,22 @@
 {{#extend "layout"}}
 
     {{#content "main" mode="append"}}
+        <div class="container">
+            {{#if user}}
 
+            {{ else }}
+
+                <div class="jumbotron">
+                    <h2 class="display-3">Wlyda</h2>
+                    <p class="lead">You have to be logged in to view articles</p>
+                    <hr class="my-4">
+                    <p class="lead">
+                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#register-modal">Register</a>
+                    </p>
+                </div>
+
+            {{/if}}
+        </div>
     {{/content}}
 
 {{/extend}}

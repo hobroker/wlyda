@@ -1,12 +1,6 @@
 const router = require("../../router");
 const User = require('../../models/user');
-var jwt = require("../../helpers/jwt.js");
-
-router.get('register', '/user/register', async function (ctx, next) {
-    await ctx.render('pages/users', {
-        name: 'something'
-    })
-});
+const jwt = require("../../helpers/jwt");
 
 const validate = async function (ctx, next) {
 
@@ -18,17 +12,15 @@ const validate = async function (ctx, next) {
         }))
     }
 
-    ctx.checkBody('name').notEmpty('Name is required');
     ctx.checkBody('email')
         .notEmpty("Email is required")
         .isEmail('Invalid email');
     ctx.checkBody('password').notEmpty('Password is required');
 
-    await ctx.checkBody('email').uniqueEmail("This email is already used");
-
     if (ctx.errors) {
         ctx.throw(JSON.stringify({
-            errors: ctx.errors
+            errors: true,
+            message: ctx.errors.map(error => error[Object.keys(error)[0]]).join('\n')
         }), 400);
         return;
     }
@@ -36,23 +28,26 @@ const validate = async function (ctx, next) {
     await next();
 };
 
-router.post('/user/register', validate, async function (ctx, next) {
+router.post('/user/login', validate, async function (ctx, next) {
     let data = ctx.request.body;
 
-    let user = new User({
-        name: data.name,
+    // find user
+    let user = await User.login({
         email: data.email,
         password: data.password
     });
 
-    await user.save();
-
     if (user) {
-        ctx.cookies.set('user', jwt.encode(user.clean()));
+        // save cookies
+        ctx.cookies.set('user', jwt.encode(user));
         ctx.body = {
             errors: false
         };
     } else {
-        ctx.throw(500);
+        ctx.throw(403, JSON.stringify({
+            errors: true,
+            message: 'Incorrent email/password'
+        }))
     }
+
 });
