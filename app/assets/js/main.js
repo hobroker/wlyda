@@ -37,10 +37,10 @@ $(function () {
 	$('#login-form').submit(function () {
 		let formData = $(this).serializeObject();
 		$.ajax({
-			url: '/user/login',
+			url: '/auth/local',
 			type: 'post',
 			data: {
-				email: formData.email,
+				username: formData.email,
 				password: formData.password
 			},
 			success: function (data) {

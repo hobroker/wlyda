@@ -3,6 +3,7 @@ const md5 = require('md5');
 
 class User {
 	constructor(data) {
+		this.id = data.id || null;
 		this.name = data.name;
 		this.email = data.email;
 		this.password = data.password;
@@ -18,7 +19,7 @@ class User {
 			.first()
 	}
 
-	save() {
+	insert() {
 		return knex('user')
 			.insert({
 				name: this.name,
@@ -28,6 +29,16 @@ class User {
 			})
 			.returning('*')
 			.get(0);
+	}
+
+	update() {
+		return knex('user')
+			.update({
+				name: this.name,
+				email: this.email,
+				facebook_id: this.facebook_id
+			})
+			.where('id', this.id)
 	}
 
 	// get only db fields
@@ -60,6 +71,12 @@ class User {
 		}
 	}
 
+	static findByEmail(email) {
+		return knex('user')
+			.select('*')
+			.where('email', email)
+			.first()
+	}
 }
 
 User.Validator = require('koa-validate').Validator;

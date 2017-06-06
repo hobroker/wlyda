@@ -1,4 +1,4 @@
-const router = require("../router");
+const router = require("../../router");
 const passport = require("koa-passport");
 
 router.get('/auth/facebook',

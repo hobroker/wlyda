@@ -104,7 +104,7 @@ router.post('/user/register', validate, async function (ctx, next) {
 		password: data.password
 	});
 
-	await user.save();
+	await user.insert();
 
 	if (user) {
 		ctx.cookies.set('user', jwt.encode(user.clean()));
