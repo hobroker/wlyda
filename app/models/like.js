@@ -1,4 +1,4 @@
-const knex = require('../helpers/db');
+const knex = require('../helpers/knex');
 
 class Like {
 

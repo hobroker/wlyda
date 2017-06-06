@@ -7,7 +7,7 @@ const path = require("path");
 
 require('./app/env');
 
-require("./app/assets/bundle.config");
+require("./app/assets/assets");
 
 console.log(path.resolve("./app/routes/api/"));
 

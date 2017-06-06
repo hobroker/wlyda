@@ -51,7 +51,7 @@ const jwt = require("../../helpers/jwt");
 const validate = async function (ctx, next) {
 
 	// check if is already logged in
-	if (ctx.cookies.get('user')) {
+	if (ctx.isAuthenticated()) {
 		ctx.throw(403, JSON.stringify({
 			errors: true,
 			message: 'Already logged in'

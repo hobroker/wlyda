@@ -10,7 +10,7 @@ require('koa-validate')(app);
 const router = require('./router');
 
 require('./views/handlebars');
-require('./helpers/db');
+require('./helpers/knex');
 
 app.keys = ['lol'];
 

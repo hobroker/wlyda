@@ -1,4 +1,4 @@
-const knex = require('../helpers/db');
+const knex = require('../helpers/knex');
 const md5 = require('md5');
 
 class User {
@@ -51,10 +51,12 @@ class User {
 	}
 
 	static async isLoggedIn(ctx, next) {
+		next = next || (() => {
+			});
 		if (ctx.isAuthenticated()) {
 			await next();
 		} else {
-			ctx.redirect('/auth/facebook');
+			ctx.redirect('/');
 		}
 	}
 

@@ -43,22 +43,19 @@
  *      "errors":true,
  *      "message": "Like type is required"
  *    }
-
- *
  */
 
 const router = require("../../router");
 const Article = require('../../models/article');
 const like = require('../../models/like');
-const jwt = require("../../helpers/jwt");
 
 const validate = async function (ctx, next) {
 
 	// check if not logged in
-	if (!ctx.cookies.get('user')) {
+	if (ctx.isUnauthenticated()) {
 		ctx.throw(403, JSON.stringify({
 			errors: true,
-			message: 'You\'re not logged in'
+			message: "You're not logged in"
 		}))
 	}
 
@@ -79,8 +76,8 @@ const validate = async function (ctx, next) {
 router.post('/article/like', validate, async function (ctx, next) {
 	let data = ctx.request.body;
 
-	data.user_id = jwt.decode(ctx.cookies.get('user')).id;
-
+	data.user_id = await ctx.state.user;
+	data.user_id = data.user_id.id;
 	await like.set(data);
 
 	ctx.body = {
