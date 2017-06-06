@@ -50,8 +50,29 @@ $(function () {
 				let rsp = JSON.parse(data.responseText);
 				alert(rsp.message)
 			}
-		})
-		;
+		});
 		return false;
-	})
+	});
+
+	$('.thumbs-box .btn').click(function () {
+		let type = $(this).attr('data-thumbs');
+		let article_id = $(this).closest('[data-id]').attr('data-id');
+		$(this).attr('disabled', true);
+		$(this).parent().find('[data-set="' + (type === 'up' ? 'down' : 'up') + '"]').attr('disabled', false);
+		$.ajax({
+			url: '/article/thumb',
+			type: 'post',
+			data: {
+				type,
+				article_id
+			},
+			success: function (data) {
+				// window.location.reload()
+			},
+			error: function (data) {
+				let rsp = JSON.parse(data.responseText);
+				alert(rsp.message)
+			}
+		});
+	});
 });

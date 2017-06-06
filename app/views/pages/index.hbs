@@ -6,12 +6,19 @@
             {{#if user}}
                 <div class="row">
                     {{#each articles}}
-                        <div class="col-md-4 card">
+                        <div class="col-md-4 card" data-id="{{ this.id }}">
                             <div class="img" style="background-image:url({{ this.image }});"></div>
                             <p class="lead">{{this.title}}</p>
-                            <div class="btn-group btn-group-sm float-right" role="group">
-                                <button class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></button>
-                                <button class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i></button>
+                            {{ this.thumbs.up }}
+                            <div class="btn-group btn-group-sm thumbs-box" role="group">
+                                <button class="btn btn-success" data-thumbs="up">
+                                    <i class="fa fa-thumbs-o-up"></i>
+                                    <span>(0)</span>
+                                </button>
+                                <button class="btn btn-danger" data-thumbs="down">
+                                    <i class="fa fa-thumbs-o-down"></i>
+                                    <span>(0)</span>
+                                </button>
                             </div>
                         </div>
                     {{/each}}
