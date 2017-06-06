@@ -9,8 +9,4 @@ const knex = require('knex')({
 	searchPath: 'knex,public'
 });
 
-/*knex.select('*').from('user').then(function (users) {
- console.log(JSON.stringify(users))
- });*/
-
 module.exports = knex;

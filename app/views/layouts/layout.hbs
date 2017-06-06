@@ -19,12 +19,13 @@
 {{> navbar }}
 
 {{#block "main"}}
-    {{#if user }}
-    {{ else }}
-        {{> login-modal }}
-        {{> register-modal }}
-    {{/if}}
+    <br>
 {{/block}}
+{{#if user }}
+{{ else }}
+    {{> login-modal }}
+    {{> register-modal }}
+{{/if}}
 
 {{> footer }}
 

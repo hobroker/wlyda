@@ -7,6 +7,7 @@ class User {
 		this.email = data.email;
 		this.password = data.password;
 		this.hashedPassword = md5(data.password);
+		this.facebook_id = data.facebook_id;
 	}
 
 	static login(data) {
@@ -22,7 +23,8 @@ class User {
 			.insert({
 				name: this.name,
 				email: this.email,
-				password: this.hashedPassword
+				password: this.hashedPassword,
+				facebook_id: this.facebook_id
 			})
 			.returning('*')
 			.get(0);
@@ -39,6 +41,21 @@ class User {
 
 	static list() {
 		return knex('user');
+	}
+
+	static getById(id) {
+		return knex('user')
+			.select('*')
+			.where('id', id)
+			.first()
+	}
+
+	static async isLoggedIn(ctx, next) {
+		if (ctx.isAuthenticated()) {
+			await next();
+		} else {
+			ctx.redirect('/auth/facebook');
+		}
 	}
 
 }

@@ -54,20 +54,28 @@ $(function () {
 		return false;
 	});
 
-	$('.thumbs-box .btn').click(function () {
-		let type = $(this).attr('data-thumbs');
+	$('.like-box .btn').click(function () {
+		let type = $(this).attr('data-like');
 		let article_id = $(this).closest('[data-id]').attr('data-id');
-		$(this).attr('disabled', true);
-		$(this).parent().find('[data-set="' + (type === 'up' ? 'down' : 'up') + '"]').attr('disabled', false);
+		let me = $(this);
+		let neighbour = $(this).parent().find('[data-like="' + (type === 'up' ? 'down' : 'up') + '"]');
+		me.attr('disabled', true);
+		neighbour.attr('disabled', false);
+		let upSpan = $(this).parent().find('[data-like="up"] span');
+		let downSpan = $(this).parent().find('[data-like="down"] span');
 		$.ajax({
-			url: '/article/thumb',
+			url: '/article/like',
 			type: 'post',
 			data: {
 				type,
 				article_id
 			},
 			success: function (data) {
-				// window.location.reload()
+				if (!data.errors) {
+					let likes = data.data;
+					upSpan.text(likes.up)
+					downSpan.text(likes.down)
+				}
 			},
 			error: function (data) {
 				let rsp = JSON.parse(data.responseText);

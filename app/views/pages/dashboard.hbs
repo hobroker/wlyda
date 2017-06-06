@@ -1,0 +1,39 @@
+{{#extend "layout"}}
+
+    {{#content "main" mode="append"}}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-md-auto">
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">List users</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Created at</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each users }}
+                            <tr>
+                                <th scope="row">{{ this.id }}</th>
+                                <td>{{ this.name }}</td>
+                                <td>{{ this.email }}</td>
+                                <td>{{ this.create_datetime }}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {{/content}}
+
+{{/extend}}

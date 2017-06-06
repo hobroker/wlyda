@@ -2,7 +2,6 @@
 
     {{#content "main" mode="append"}}
         <div class="container">
-            <br>
             {{#if user}}
                 <div class="row">
                     {{#each articles}}
@@ -10,14 +9,16 @@
                             <div class="img" style="background-image:url({{ this.image }});"></div>
                             <p class="lead">{{this.title}}</p>
                             {{ this.thumbs.up }}
-                            <div class="btn-group btn-group-sm thumbs-box" role="group">
-                                <button class="btn btn-success" data-thumbs="up">
+                            <div class="btn-group btn-group-sm like-box" role="group">
+                                <button class="btn btn-success" data-like="up"
+                                        {{#if this.likes.user.up}}disabled{{/if}}>
+                                    <span>{{ this.likes.up }}</span>
                                     <i class="fa fa-thumbs-o-up"></i>
-                                    <span>(0)</span>
                                 </button>
-                                <button class="btn btn-danger" data-thumbs="down">
+                                <button class="btn btn-danger" data-like="down"
+                                        {{#if this.likes.user.down}}disabled{{/if}}>
+                                    <span>{{ this.likes.down }}</span>
                                     <i class="fa fa-thumbs-o-down"></i>
-                                    <span>(0)</span>
                                 </button>
                             </div>
                         </div>
@@ -29,10 +30,12 @@
                     <h2 class="display-3">Wlyda</h2>
                     <p class="lead">You have to be logged in to view articles</p>
                     <hr class="my-4">
-                    <p class="lead">
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-secondary" href="#" data-toggle="modal"
+                           data-target="#login-modal">Login {{user.name}}</a>
                         <a class="btn btn-primary" href="#" data-toggle="modal"
                            data-target="#register-modal">Register</a>
-                    </p>
+                    </div>
                 </div>
 
             {{/if}}

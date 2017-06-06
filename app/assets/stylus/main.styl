@@ -1,5 +1,19 @@
 @import "_mixins.styl"
 
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 60px;
+}
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+}
 .d-center {
 	text-align center
 }
@@ -25,7 +39,6 @@
 		font-size 13px
 	}
 }
-
 .thumbs-box {
 	.btn {
 		cursor: pointer
