@@ -2,8 +2,20 @@
 
     {{#content "main" mode="append"}}
         <div class="container">
+            <br>
             {{#if user}}
-
+                <div class="row">
+                    {{#each articles}}
+                        <div class="col-md-4 card">
+                            <div class="img" style="background-image:url({{ this.image }});"></div>
+                            <p class="lead">{{this.title}}</p>
+                            <div class="btn-group btn-group-sm float-right" role="group">
+                                <button class="btn btn-success"><i class="fa fa-thumbs-o-up"></i></button>
+                                <button class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i></button>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
             {{ else }}
 
                 <div class="jumbotron">
@@ -11,7 +23,8 @@
                     <p class="lead">You have to be logged in to view articles</p>
                     <hr class="my-4">
                     <p class="lead">
-                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#register-modal">Register</a>
+                        <a class="btn btn-primary" href="#" data-toggle="modal"
+                           data-target="#register-modal">Register</a>
                     </p>
                 </div>
 

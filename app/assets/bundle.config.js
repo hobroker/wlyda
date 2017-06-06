@@ -55,7 +55,8 @@ const config = {
 			watch: [
 				'/libraries/**/*.js'
 			],
-			minify: false
+			minify: false,
+			touch: false
 		}
 	}
 };
@@ -101,7 +102,7 @@ function bundleScripts() {
 		let item = config.scripts[bundle];
 
 		function run() {
-			let shouldChange = item.touch === undefined ? false : item.touch;
+			let shouldChange = item.touch === undefined ? true : item.touch;
 			console.log('-- script bundle(', bundle, ')');
 			gulp.src(item.files.map(makeAssetsPath))
 				.pipe(gulpif(shouldChange,
