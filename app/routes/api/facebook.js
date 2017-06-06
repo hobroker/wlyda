@@ -1,3 +1,13 @@
+/**
+ * @api {post} /auth/facebook Facebook authentication
+ * @apiName FacebookAuth
+ * @apiGroup User
+ *
+ * @apiSuccessExample Success
+ *    HTTP/1.1 302 Found
+ *
+ */
+
 const router = require("../../router");
 const passport = require("koa-passport");
 

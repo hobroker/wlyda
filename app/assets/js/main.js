@@ -8,7 +8,6 @@ $.fn.serializeObject = function () {
 };
 
 $(function () {
-	// $('#register-modal').modal();
 	$('#register-form').submit(function () {
 		let formData = $(this).serializeObject();
 		if (!formData['password-one'] || formData['password-one'] !== formData['password-two']) {
@@ -24,7 +23,9 @@ $(function () {
 				password: formData['password-one']
 			},
 			success: function (data) {
-				window.location.reload()
+				alert('Successfully registered\nYou can login now')
+				$('#register-modal').modal('hide');
+				$('#login-modal').modal('show');
 			},
 			error: function (data) {
 				let rsp = JSON.parse(data.responseText);
@@ -40,7 +41,7 @@ $(function () {
 			url: '/auth/local',
 			type: 'post',
 			data: {
-				username: formData.email,
+				email: formData.email,
 				password: formData.password
 			},
 			success: function (data) {

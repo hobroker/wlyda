@@ -47,5 +47,5 @@ gulp.task('nodemon', nodemonTask);
 gulp.task('apidoc', apidoc);
 
 gulp.task('default', function (callback) {
-	runSequence('bundle-assets', 'nodemon', callback);
+	runSequence('bundle-assets', 'nodemon', 'apidoc', callback);
 });

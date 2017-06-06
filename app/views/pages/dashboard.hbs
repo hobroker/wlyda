@@ -1,4 +1,4 @@
-{{#extend "layout"}}
+{{#extend "layouts/main"}}
 
     {{#content "main" mode="append"}}
         <div class="container-fluid">
@@ -17,6 +17,7 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Facebook ID</th>
                             <th>Created at</th>
                         </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                 <th scope="row">{{ this.id }}</th>
                                 <td>{{ this.name }}</td>
                                 <td>{{ this.email }}</td>
+                                <td>{{ this.facebook_id }}</td>
                                 <td>{{ this.create_datetime }}</td>
                             </tr>
                         {{/each}}

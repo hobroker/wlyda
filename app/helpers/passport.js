@@ -37,7 +37,10 @@ passport.use(new FacebookStrategy(fb_api,
 	}
 ));
 
-passport.use(new LocalStrategy(
+passport.use(new LocalStrategy({
+		usernameField: 'email',
+		passwordField: 'password'
+	},
 	async (email, password, done) => {
 		let user = await User.login({email, password});
 		if (user) {

@@ -5,7 +5,6 @@ const knex = require('../helpers/knex');
 const Article = require('../models/article');
 
 router.get('/', async function (ctx, next) {
-	console.log('authenticated = ' + ctx.isAuthenticated());
 	let articles = await Article.list();
 
 	if (ctx.isAuthenticated()) {

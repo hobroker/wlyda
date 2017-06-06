@@ -16,18 +16,18 @@
 
 <body>
 
-{{> navbar }}
+{{> partials/navbar }}
 
 {{#block "main"}}
     <br>
 {{/block}}
 {{#if user }}
 {{ else }}
-    {{> login-modal }}
-    {{> register-modal }}
+    {{> partials/login-modal }}
+    {{> partials/register-modal }}
 {{/if}}
 
-{{> footer }}
+{{> partials/footer }}
 
 
 <script src="/assets/libraries.js"></script>

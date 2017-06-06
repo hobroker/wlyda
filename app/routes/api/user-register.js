@@ -57,7 +57,6 @@
 
 const router = require("../../router");
 const User = require('../../models/user');
-var jwt = require("../../helpers/jwt.js");
 
 router.get('register', '/user/register', async function (ctx, next) {
 	await ctx.render('pages/users', {
@@ -68,7 +67,7 @@ router.get('register', '/user/register', async function (ctx, next) {
 const validate = async function (ctx, next) {
 
 	// check if is already logged in
-	if (ctx.cookies.get('user')) {
+	if (ctx.isAuthenticated()) {
 		ctx.throw(403, JSON.stringify({
 			errors: true,
 			message: 'Already logged in'
@@ -107,7 +106,6 @@ router.post('/user/register', validate, async function (ctx, next) {
 	await user.insert();
 
 	if (user) {
-		ctx.cookies.set('user', jwt.encode(user.clean()));
 		ctx.body = '';
 	} else {
 		ctx.throw(500);

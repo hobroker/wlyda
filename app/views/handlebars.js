@@ -14,7 +14,7 @@ let partials = {};
 let partialDirectories = ['layouts', 'partials'];
 partialDirectories.forEach(directory => {
 	fs.readdirSync(__dirname + '/' + directory).forEach(file => {
-		partials[file.slice(0, -4)] = read(directory + '/' + file)
+		partials[directory + '/' + file.slice(0, -4)] = read(directory + '/' + file)
 	});
 });
 
