@@ -38,7 +38,8 @@ function nodemonTask() {
 function apidoc(done) {
 	gapidoc({
 		src: "./app/routes/api/",
-		dest: "./public/apidoc/"
+		dest: "./public/apidoc/",
+		config: "./"
 	}, done);
 }
 

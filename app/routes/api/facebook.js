@@ -1,5 +1,6 @@
 /**
  * @api {post} /auth/facebook Facebook authentication
+ * @apiVersion 0.1.0
  * @apiName FacebookAuth
  * @apiGroup User
  *

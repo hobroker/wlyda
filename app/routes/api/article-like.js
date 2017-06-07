@@ -1,5 +1,6 @@
 /**
- * @api {post} /article/like
+ * @api {post} /article/like Article like
+ * @apiVersion 0.1.0
  * @apiName ArticleLike
  * @apiGroup Article
  *

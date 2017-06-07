@@ -1,5 +1,6 @@
 /**
  * @api {get} /user/logout User Logout
+ * @apiVersion 0.1.0
  * @apiName UserLogout
  * @apiGroup User
  *

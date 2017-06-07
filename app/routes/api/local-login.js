@@ -1,5 +1,6 @@
 /**
  * @api {post} /user/login User Login
+ * @apiVersion 0.1.0
  * @apiName UserLogin
  * @apiGroup User
  *
