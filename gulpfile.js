@@ -9,8 +9,6 @@ require('./app/env');
 
 require("./app/assets/assets");
 
-console.log(path.resolve("./app/routes/api/"));
-
 function nodemonTask() {
 	const daemon = nodemon({
 		script: './app/index.js',

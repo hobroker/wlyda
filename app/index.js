@@ -5,6 +5,8 @@ const bodyParser = require('koa-bodyparser');
 const session = require('koa-session');
 const passport = require('./helpers/passport');
 
+const env = require('./env.json');
+
 require('koa-validate')(app);
 
 const router = require('./router');
@@ -12,7 +14,7 @@ const router = require('./router');
 require('./views/handlebars');
 require('./helpers/knex');
 
-app.keys = ['lol'];
+app.keys = env.KEYS;
 
 app.proxy = true;
 
@@ -31,6 +33,6 @@ app
 
 app.use(serve(__dirname + '/../public'));
 
-app.listen(3001);
+app.listen(env.PORT);
 
-console.log("Listening on :3001");
+console.log(`Listening on :${env.PORT}`);

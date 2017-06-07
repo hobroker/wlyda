@@ -20,11 +20,14 @@ passport.deserializeUser(async (id, done) => {
 passport.use(new FacebookStrategy(fb_api,
 	async (token, tokenSecret, profile, done) => {
 		let email = profile.emails[0].value;
-		let user = new User(await User.findByEmail(email));
-		if (user && !user.facebook_id) {
+		let searchUser = await User.findByEmail(email);
+		let user;
+		if (searchUser) {
+			user = new User(searchUser);
 			user.facebook_id = profile.id;
 			await user.update();
-		} else if (!user.facebook_id) {
+		}
+		else {
 			user = new User({
 				name: profile.displayName,
 				email,
